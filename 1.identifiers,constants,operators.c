@@ -1,73 +1,29 @@
 #include<stdio.h>
+#include<conio.h>
 #include<ctype.h>
 #include<string.h>
 int main()
 {
-	int i,ic=0,m,cc=0,oc=0,j;
-	char b[30],operators[30],identifiers[30],constants[30];
-	printf("enter the string : ");
-	scanf("%[^\n]s",&b);
-	for(i=0;i<strlen(b);i++)
+	char a[100],i;
+	printf("enter a string:");
+	scanf("%s",&a);
+	int len=strlen(a);
+	for(i=0;i<len;i++)
 	{
-    	if(isspace(b[i]))
+		if(isalpha(a[i]))
 		{
-    	    continue;
-    	}
-    	else if(isalpha(b[i]))
+			printf("\n%c is identifier.\n",a[i]);
+		}
+		else if(isdigit(a[i]))
 		{
-        	identifiers[ic] =b[i];
-        	ic++;
-    	}
-    	else if(isdigit(b[i]))
+			printf("%c is digit.\n",a[i]);
+		}
+		else if(a[i]=='*' || a[i]=='-' || a[i]=='+' || a[i]=='=' || a[i]=='/' || a[i]=='%' || a[i]=='!'|| a[i]=='(' || a[i]==')' ||
+		a[i]=='{' || a[i]=='}' || a[i]=='[' || a[i]==']')
 		{
-        	m=(b[i]-'0');
-        	i=i+1;
-        	while(isdigit(b[i]))
-			{
-            	m=m*10 + (b[i]-'0');
-            	i++;
-        	}
-        	i=i-1;
-        	constants[cc]=m;
-        	cc++;
-    	}
-    	else
-		{
-        	if(b[i]=='*')
-			{
-            	operators[oc]='*';
-            	oc++;
-        	}
-        	else if(b[i]=='-')
-			{
-            	operators[oc]='-';
-            	oc++;
-        	}
-        	else if(b[i]=='+')
-			{
-            	operators[oc]='+';
-            	oc++;
-        	}
-         	else if(b[i]=='=')
-			{
-            	operators[oc]='=';
-            	oc++;
-        	}
-  		}
+			printf("%c is operator\n",a[i]);
+		}
+		
 	}
-    printf(" identifiers : ");
-     for(j=0;j<ic;j++)
-	 {
-        printf("%c ",identifiers[j]);
-     }
-    printf("\n constants : ");
-     for(j=0;j<cc;j++)
-	 {
-        printf("%d ",constants[j]);
-     }
-    printf("\n operators : ");
-      for(j=0;j<oc;j++)
-	  {
-        printf("%c ",operators[j]);
-      }
+	return 0;
 }
