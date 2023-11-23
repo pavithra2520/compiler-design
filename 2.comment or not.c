@@ -1,34 +1,17 @@
-#include<stdio.h> 
-#include<conio.h> 
-int main()
-{
-	char com[30]; 
-	int i=2,a=0; 
-	printf("\n Enter comment:");
-	gets(com); 
-	if(com[0]=='/') 
-	{
-		if(com[1]=='/')
-			printf("\n It is a comment"); 
-		else if(com[1]=='*') 
-		{		
-			for(i=2;i<=30;i++)
-			{
-				if(com[i]=='*'&&com[i+1]=='/')
-				{
-					printf("\n It is a comment"); 
-					a=1; 
-					break;	
-				}
-				else 
-					continue; 
-			} 
-			if(a==0)
-				printf("\n It is not a comment");
-		}
-		else
-			printf("\n It is not a comment");
-	}
-	else 
-		printf("\n It is not a comment");
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char input[100];
+    printf("Enter the line of code: ");
+    fgets(input, sizeof(input), stdin);
+    if (strstr(input, "//") == input) {
+        printf("This is a single-line comment.\n");
+    }
+    else if (strstr(input, "/*") != NULL && strstr(input, "*/") != NULL) {
+        printf("This is a multi-line comment.\n");
+    }
+    else {
+        printf("This is not a comment.\n");
+    }
+    return 0;
 }
