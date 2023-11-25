@@ -1,0 +1,21 @@
+%{
+#include <stdio.h>
+int counter = 0;
+%}
+%%
+[a-zA-Z]+ {
+  if (yyleng > counter) {
+    counter = yyleng;
+  }
+}
+%%
+int main() {
+printf("enter the input:");
+  yylex();
+  printf("largest: %d\n", counter);
+  return 0;
+}
+int yywrap()
+{
+return 1;
+}
